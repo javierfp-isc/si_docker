@@ -1,0 +1,15 @@
+version: '3'
+services:
+#Service dev toma el Dockerfile de ./dev
+ dev:
+  build: ./dev
+  hostname: dev
+  env_file: 
+  - "dev/envfile"
+  #Mapea el 8069 del container al anfitrión
+  ports:
+  - "8080:80"
+  - "8043:443"
+  #Mapeo del directorio de repos
+  volumes:
+  - ~/repos:/root/repos
