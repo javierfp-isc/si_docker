@@ -1,0 +1,11 @@
+#Lista de paquetes de utilidades de la imagen
+PAQUTILS="vim curl iputils-ping net-tools nano wget procps"
+#Lista de paquetes para desarrollo de la imagen
+PAQDEV="git apache2 php php-mysql php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip"
+#Variables
+MDB="mediawiki_db"
+MDBUSER="mediawiki_user"
+MDBPASS="abc123."
+#Comandos a ejecutar al crear la imagen separados por ","
+COMMANDS="export DEBIAN_FRONTEND=noninteractive,apt install -y mariadb-server mariadb-client,sed -i 's/127.0.0.1/0.0.0.0/' /etc/mysql/my.cnf,service mysql start,echo \"CREATE DATABASE $MDB\" | mysql -u root, echo \"GRANT ALL ON $MDB.* TO '$MDBUSER'@'localhost' IDENTIFIED BY '$MDBPASS';\" | mysql -u root,cd /tmp,wget https://releases.wikimedia.org/mediawiki/1.35/mediawiki-1.35.2.tar.gz,tar -xzf mediawiki-1.35.2.tar.gz,mv mediawiki-1.35.2 /var/www/html/mediawiki,chown -R www-data:www-data /var/www/html/mediawiki"
+
